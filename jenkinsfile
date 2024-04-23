@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Run your deployment here
-                sh 'docker run -it -d -p 9043:80 newproject:test1'
+                sh 'docker run -it -d -p 9047:80 newproject:test1'
             }
         }
     }
