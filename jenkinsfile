@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage('Git Checkout') {
+            steps {
+                script {
+                    git branch: 'master',
+                        credentialsId: 'dfe32467-5666-45ab-9c61-a782b587ffce',
+                        url: 'https://github.com/streezie/projCert.git'
+                }
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Perform your build steps here
+                sh 'docker build -t newproject:test1 .'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Run your deployment here
+                sh 'docker run -it -d -p 9043:80 newproject:test1'
+            }
+        }
+    }
+}
+
